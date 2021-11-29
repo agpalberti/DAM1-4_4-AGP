@@ -1,15 +1,21 @@
 
 
-class Pila<T>(list: List<T>){
-    val list = list.toMutableList()
+class Pila<T>(){
+    private var list = mutableListOf<T>()
 
-    fun tope():T? = if (list.size>0) list.first() else null
+    constructor(list: List<T>):this(){
+        this.list = list.toMutableList()
+    }
 
-    fun push(param:T) = list.add(param)
+    fun top():T? = if (list.size>0) list.first() else null
 
-    fun pop(param:T):Boolean = list.remove(list.first())
+    fun push(param:T):Boolean = list.add(param)
 
-    fun empty():Boolean = list.isEmpty()
+    fun pop(param:T):Boolean = if (list.size>0) list.remove(list.first()) else false
+
+    fun isEmpty():Boolean = list.isEmpty()
+
+    fun size():Int = list.size
 
     override fun toString(): String {
         return list.toString()
@@ -17,11 +23,19 @@ class Pila<T>(list: List<T>){
 }
 
 
+fun <T> reverse(list: List<T>):List<T>{
+    val queue = Pila<T>()
+    val value = mutableListOf<T>()
+    list.reversed().forEach { queue.push(it) }
+    list.
 
+}
 
 
 
 fun main() {
 
-    val a = Pila<Int>(2,3,4)
+
+
+
 }
