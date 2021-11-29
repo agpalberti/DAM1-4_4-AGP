@@ -1,21 +1,27 @@
-
-
-class Pila<T>(){
+class Pila<T>() {
     private var list = mutableListOf<T>()
 
-    constructor(list: List<T>):this(){
-        this.list = list.toMutableList()
+    constructor(element: Collection<T>) : this() {
+        this.list = element.toMutableList()
     }
 
-    fun top():T? = if (list.size>0) list.first() else null
+    fun top(): T? = if (list.size > 0) list[0] else null
 
-    fun push(param:T):Boolean = list.add(param)
+    fun push(param: T) = list.add(0, param)
 
-    fun pop(param:T):Boolean = if (list.size>0) list.remove(list.first()) else false
+    fun pop(): Boolean = if (list.size > 0) list.remove(list[0]) else false
 
-    fun isEmpty():Boolean = list.isEmpty()
+    fun isEmpty(): Boolean = list.isEmpty()
 
-    fun size():Int = list.size
+    fun size(): Int = list.size
+
+    fun toList(): List<T> = list.toList()
+
+    fun toMutableList(): MutableList<T> = list
+
+    fun toSet(): Set<T> = list.toSet()
+
+    fun toMutableSet(): MutableSet<T> = list.toMutableSet()
 
     override fun toString(): String {
         return list.toString()
@@ -23,19 +29,23 @@ class Pila<T>(){
 }
 
 
-fun <T> reverse(list: List<T>):List<T>{
-    val queue = Pila<T>()
-    val value = mutableListOf<T>()
-    list.reversed().forEach { queue.push(it) }
-    list.
+fun <T> reverse(list: List<T>): List<T> {
+    val pila = Pila<T>()
+    iterator<T> {  }
+    list.forEach{ pila.push(it) }
+    return pila.toList()
 
 }
 
 
-
 fun main() {
 
-
-
+    var numbers = listOf("one", "two", "three", "four")
+    var numbersRev = reverse(numbers)
+    if (!listOf("four", "three", "two", "one").equals(numbersRev))
+        println("Error")
+    else
+        println("Correcto")
+    println(numbersRev)
 
 }
