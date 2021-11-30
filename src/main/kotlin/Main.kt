@@ -7,11 +7,13 @@ class Pila<T>() {
 
     fun top(): T? = if (list.size > 0) list[0] else null
 
-    fun push(param: T) = list.add(0, param)
+    fun push(element: T) = list.add(0, element)
 
     fun pop(): Boolean = if (list.size > 0) list.remove(list[0]) else false
 
     fun isEmpty(): Boolean = list.isEmpty()
+
+    fun isNotEmpty(): Boolean = list.isNotEmpty()
 
     fun size(): Int = list.size
 
@@ -23,6 +25,12 @@ class Pila<T>() {
 
     fun toMutableSet(): MutableSet<T> = list.toMutableSet()
 
+    fun set(index:Int,element:T) = list.set(index,element)
+
+    fun get(index: Int):T = list[index]
+
+    fun hasNext():Boolean = list.size > 1
+
     override fun toString(): String {
         return list.toString()
     }
@@ -31,9 +39,13 @@ class Pila<T>() {
 
 fun <T> reverse(list: List<T>): List<T> {
     val pila = Pila<T>()
-    iterator<T> {  }
-    list.forEach{ pila.push(it) }
-    return pila.toList()
+    val iterator = list.iterator()
+    val newList = mutableListOf<T>()
+    while(iterator.hasNext()) pila.push(iterator.next())
+    //return pila.toList()
+    while (pila.isNotEmpty()){
+        pila.top()?.let { newList.add(it) }; pila.pop() }
+    return newList
 
 }
 
