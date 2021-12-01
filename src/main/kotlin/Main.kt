@@ -2,7 +2,7 @@ class Pila<T>() {
     private var list = mutableListOf<T>()
 
     constructor(element: Collection<T>) : this() {
-        this.list = element.toMutableList()
+        element.forEach{push(it)}
     }
 
     fun top(): T? = if (list.size > 0) list[0] else null
